@@ -1,0 +1,32 @@
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.container h2{
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+.labtestSearch{
+    display: flex;
+    flex-direction: row;
+}
+.labtestInput{
+    width: 70%;
+    padding: 6px 12px 6px 0px;
+}
+
+.labtestPrice{
+    width: 25%;
+    padding: 6px 12px;
+}
+
+.labtestButton{
+    width: 5%;
+    padding: 6px 12px;
+    margin: auto;
+}
+
+.labTests{
+    margin-bottom: 40px;
+}

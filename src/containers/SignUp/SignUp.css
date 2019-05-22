@@ -1,0 +1,20 @@
+.container{
+    background: rgba(0, 0, 0, 0) url("../../assets/images/appointment-bg2.jpg") no-repeat scroll center center / cover ;
+}
+
+.row{
+    width:90%;
+    display: flex;
+    flex-direction: row;
+    margin-right:auto;
+    margin-left:auto;
+    padding-right: auto;
+    padding-left:auto;
+}
+
+@media (max-width:1000px){
+    .row{
+        flex-direction: column;
+        align-content: center;
+    }
+}

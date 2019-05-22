@@ -1,0 +1,72 @@
+.container{
+    background: rgba(0, 0, 0, 0) url("../../../assets/images/slider/slider-3/bg3.jpg") no-repeat scroll center center / cover ;
+    width:100%
+}
+
+.row{
+    width:80%;
+    padding: 113px 0 106px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.header{
+    background: #67d7ff;
+    padding: 30px 20px 30px 20px;
+    width: 95%;
+    color: white;
+}
+
+.header h1{
+    margin: 0 0 5px;
+    color: #fff;
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.header h3{
+    margin: 0 0 10px;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+}
+
+.area{
+    width:18%;
+    padding: 0 10px;
+}
+
+.test{
+    width:63%;
+    padding: 0 10px; 
+}
+
+.search{
+    width:13%;
+    padding: 0 10px;
+}
+
+@media (max-width: 679px){
+
+.form{
+    flex-direction: column;
+}
+
+.area{
+    width:100%;
+}
+
+.test{
+    width:100%;
+}
+
+.search{
+    width:100%;
+}
+
+}
+

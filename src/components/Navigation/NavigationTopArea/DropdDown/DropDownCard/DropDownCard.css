@@ -1,0 +1,71 @@
+.main{
+    border-bottom: 1px solid #dddddd;
+}
+
+.container{
+    width:100%;
+}
+
+.row{
+    padding:10px;
+    margin-top:0px;
+}
+
+.cardImage{
+    float: left;
+}
+
+.cardImage a{
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.cardImage a img{
+    padding: 10px;
+    width: 60px;
+    min-height: 80px;
+}
+
+.cardBody{
+    display: table-cell;
+    vertical-align: top;
+}
+
+.cartBodyHeading{
+    display: flex;
+    flex-direction: row;
+}
+
+.cartBodyHeading h4{
+    margin: 4px 0 0 0;
+    padding: 0;
+}
+
+.cartBodyHeading h4 a{
+    color: white;
+    font-size: 14px;
+}
+
+.cartBodyHeadingIcon a{
+    color: white;
+    position: absolute;
+    right: 0;   
+    padding: 10px;
+}
+
+.cardPrice{
+    display: inline-block;
+    position: absolute; 
+    right: 10px;
+    background: white;
+}
+
+.cardPrice a{
+    background: #9dd40e none repeat scroll 0 0;
+    color: #000000;
+    display: block;
+    font-size: 12px;
+    padding: 0 14px;
+    transition: all .3s;
+}

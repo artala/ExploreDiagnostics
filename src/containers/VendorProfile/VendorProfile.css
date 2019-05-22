@@ -1,0 +1,23 @@
+.background {
+    background: rgba(0, 0, 0, 0) url("../../assets/images/appointment-bg2.jpg") no-repeat scroll center center / cover;
+    height: inherit;
+    padding-top:30px;
+}
+
+.container{
+    width: 90%;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.9) none repeat scroll 0 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.imageContainer{
+    width:35%;
+
+}
+
+.formContainer{
+    width: 60%;
+    margin:10px;
+}

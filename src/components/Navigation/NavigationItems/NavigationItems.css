@@ -1,0 +1,133 @@
+.NavigationItems {
+    margin: 0;
+    padding: 2px;
+    list-style: none;
+    display: flex;
+    flex-flow: column;
+    align-items: left;
+    height: 100%;
+}
+
+.NavigationItems a {
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-right:5px;
+    border-radius: 0;
+    color: #ffffff;
+    font-family: "Raleway",sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.NavigationItems li{
+    padding: 28px 0px;
+    color: white;
+    font-weight: 600;
+}
+
+.dropDownItems {
+    background: #191d34;
+    /* opacity: 0; */
+    position: relative;
+    top: 28px;
+    padding: 0px;
+    /* transform: scaleY(0); */
+    transform-origin: 0 0 0;
+    transition: all 0.5s ease 0s;
+    width: 200px;
+    z-index: 99999;
+}
+
+.dropDownItemsClosed{
+    background: #191d34;
+    opacity: 0;
+    position: relative;
+    top: 28px;
+    padding: 0px;
+    transform: scaleY(0);
+    transform-origin: 0 0 0;
+    transition: all 0.5s ease 0s;
+    width: 200px;
+    z-index: 0;
+}
+
+.dropDownItems li{
+    display: block;
+    border-bottom: 1px solid #dddddd;
+    padding: 5px;
+}
+
+.dropDownItems li a{
+    display: block;
+    font-size: inherit;
+    padding: 3px 0 3px 15px;
+    text-align: left;
+    text-decoration: none;
+    text-transform: none;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.dropDownItems li a:hover{
+    color:#67d7ff;
+}
+
+.NavLink{
+    background: #67d7ff none repeat scroll 0 0;
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-right:5px;
+    border-radius: 0;
+    color: #ffffff;
+    font-family: "Raleway",sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+
+
+.NavigationItems a:hover{
+    color: black;
+}
+
+@media (min-width: 679px) and (max-width: 1000px){
+        .NavigationItems a{
+            font-size: 10px;
+        }
+    }
+
+@media (min-width: 679px) {
+    .NavigationItems {
+        flex-flow: row;
+        background: #12b2eb none repeat scroll 0 0;
+        margin: auto;
+    } 
+}
+
+@media (max-width: 679px) {
+    .NavigationItems {
+        background: white;
+    } 
+    .mobileDropDown {
+        padding: 2px;
+        width: 100%;
+        background:#67d7ff;
+        font-weight: 200;
+    }
+    .mobileDropDown a{
+        margin:auto;
+        margin-top:5px;
+    }
+    .NavigationItems a {
+        background: #67d7ff none repeat scroll 0 0;
+        margin:auto;
+        margin-top:5px;
+    }
+}
+
+
+

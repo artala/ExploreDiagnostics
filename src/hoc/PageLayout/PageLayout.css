@@ -1,0 +1,64 @@
+.bannerArea {
+    padding: 120px 0 106px;
+    background: rgba(0, 0, 0, 0) url("../../assets/images/banner/1.jpg") no-repeat scroll center center / cover ;
+    margin-top: 5px;
+  }
+
+.container {
+    width:90%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.banner h2{
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.breadcrumbArea {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    padding-top: 10px;
+}
+
+.breadcrumbParent {
+    display: block;
+    font-weight: 400;
+    padding-right: 10px;
+    text-decoration: none;
+    float: left;
+}
+
+.breadcrumbParent a{
+    color: #12b2eb;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.after{
+    font-weight: 700;
+    color: #ffffff;
+    list-style-type: none;
+    padding-right: 5px;
+}
+
+.breadcrumbChild{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+
+
