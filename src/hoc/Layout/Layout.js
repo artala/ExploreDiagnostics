@@ -33,7 +33,7 @@ class Layout extends Component {
     render () {
         return (
             <Aux>
-                <NavigationTopArea/>
+                <NavigationTopArea isAuth={this.props.isAuthenticated}/> 
                 <Toolbar 
                 isAuth={this.props.isAuthenticated} 
                 drawerToggleClicked={this.sideDrawerToggleHandler}

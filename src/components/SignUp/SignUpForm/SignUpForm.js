@@ -1,10 +1,14 @@
 import React,{Component} from 'react';
-import PageLayout from '../../hoc/PageLayout/PageLayout';
-import Classes from './SignUp.css';
-import {updateObject,checkValidity} from '../../shared/utility';
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
-import Select from '../../components/UI/Select/Select';
+import PageLayout from '../../../hoc/PageLayout/PageLayout';
+import Classes from './SignUpForm.css';
+import {updateObject,checkValidity} from '../../../shared/utility';
+import Input from '../../../components/UI/Input/Input';
+import Button from '../../../components/UI/Button/Button';
+import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/index';
+
+// import Spinner from '../../UI/Spinner/Spinner'
+
 
 
 class SignUp extends Component{
@@ -68,15 +72,51 @@ class SignUp extends Component{
                 },
                 valid: false,
                 touched: false
+            },
+            location: {
+                label:'Location',
+                elementType: 'select',
+                elementConfig: {
+                    placeholder: 'Select Location',
+                    options:[{value:'Hyderabad'},{value:'Shadnagar'}]
+                },
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
             }
-        },
-        isVendor:false
+
+        }
     }
 
-    // isVendorHandler=()=>{
-    //     const isPrevVendor= this.state.isVendor;
-    //     this.setState({isVendor:!isPrevVendor})
-    // }
+    submitHandler = (event)=>{
+        event.preventDefault();
+        const user={name:this.state.controls.name.value,
+            email: this.state.controls.email.value,
+            password:this.state.controls.password.value,
+            mobileNumber:this.state.controls.phone.value}
+        if(this.props.isVendor){
+            user['location']=this.state.controls.location.value
+        }
+        console.log(user)
+        let category=null
+        if(this.props.isVendor){
+            category='Vendor'
+        }
+        else{
+            category='User'
+        }
+        this.props.authStart(user,category)
+        this.props.history.push('/')
+        // if(this.props.signUpStatus){
+        //     this.props.history.push('/')
+        // }
+        // else{
+        //     this.props.history.push('/SignUp')
+        // }
+    }
 
     inputChangedHandler = (event, controlName)=>{
         const updatedControls= updateObject(this.state.controls,{
@@ -91,12 +131,17 @@ class SignUp extends Component{
     render(){
         const formElementsArray = [];
         for (let key in this.state.controls) {
-             console.log(key,this.state.controls[key]);
-            formElementsArray.push({
-                id: key,
-                config: this.state.controls[key]
-            });
+            if(!this.props.isVendor && key==='location'){
+                formElementsArray;
+            }
+            else{
+                formElementsArray.push({
+                    id: key,
+                    config: this.state.controls[key]
+                    });
+            }
         }
+        
         let form= formElementsArray.map(formElement=>(
             <div>
             <label>{formElement.config.label}</label>
@@ -114,9 +159,9 @@ class SignUp extends Component{
         return(
             <div>
             <PageLayout 
-            Heading={this.state.isVendor?"VENDOR SIGNUP" : "USER SIGNUP"}
+            Heading={this.props.isVendor?"VENDOR SIGNUP" : "USER SIGNUP"}
             Subtitle1="Home"
-            Subtitle2={this.state.isVendor?"Vendor SignUp" : "User SignUp"}/>
+            Subtitle2={this.props.isVendor?"Vendor SignUp" : "User SignUp"}/>
             <div className={Classes.makeAppointmentArea}>
                 <div className={Classes.container}>
                     <div className={Classes.row}>
@@ -126,7 +171,6 @@ class SignUp extends Component{
                             <div className={Classes.formGroup}>
                             <form onSubmit={this.submitHandler}>
                                 {form}
-                                {this.state.isVendor?<Select/>:null}
                                 <Button btnType="Success">Submit</Button>
                             </form>
                             </div>
@@ -139,4 +183,17 @@ class SignUp extends Component{
     }
 }
 
-export default SignUp;
+const mapStateToProps= state =>{
+    return{
+        isVendor: state.auth.isVendor,
+        // signUpStatus : state.auth.signUpStatus
+    }
+}
+
+const mapDispatchToProps = dispatch =>{
+    return{
+        authStart : (user,category)=>dispatch(actions.authSignUp(user,category))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignUp);

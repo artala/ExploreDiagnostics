@@ -4,28 +4,60 @@ import Classes from './SignIn.css';
 import {updateObject,checkValidity} from '../../shared/utility';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button'
+import {connect} from 'react-redux';
+import Spinner from '../../components/UI/Spinner/Spinner'
+import * as actions from '../../store/actions/index'
 
 
 class SignIn extends Component{
     state={
         controls:{
-            phone: {
-                label:'Phone',
+            email: {
+                label:"Email",
                 elementType: 'input',
                 elementConfig: {
-                    type: 'tel',
-                    placeholder: 'Phone No *'
+                    type: 'email',
+                    placeholder: 'Mail Address'
                 },
                 value: '',
                 validation: {
                     required: true,
-                    isPhoneNumber:true
+                    isEmail:true
+                },
+                valid: false,
+                touched: false
+            },
+            password: {
+                label:"Password",
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength:6
                 },
                 valid: false,
                 touched: false
             }
-        },
-        isSignup:true
+            // phone: {
+            //     label:'Phone',
+            //     elementType: 'input',
+            //     elementConfig: {
+            //         type: 'tel',
+            //         placeholder: 'Phone No *'
+            //     },
+            //     value: '',
+            //     validation: {
+            //         required: true,
+            //         isPhoneNumber:true
+            //     },
+            //     valid: false,
+            //     touched: false
+            // }
+        }
     }
 
     inputChangedHandler = (event, controlName)=>{
@@ -38,6 +70,18 @@ class SignIn extends Component{
         })
         this.setState({controls:updatedControls})
     }
+
+    submitHandler = (event)=>{
+        event.preventDefault();
+        const user={
+            email: this.state.controls.email.value,
+            password:this.state.controls.password.value
+            }
+        console.log(user)
+        this.props.authSignIn(user)
+        this.props.history.push('/')
+    }
+
     render(){
         const formElementsArray = [];
         for (let key in this.state.controls) {
@@ -61,6 +105,7 @@ class SignIn extends Component{
                 changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
             </div>
         ))
+        // form=<Spinner/>
         return(
             <div>
             <PageLayout 
@@ -88,4 +133,10 @@ class SignIn extends Component{
     }
 }
 
-export default SignIn;
+const mapDispatchToProps = dispatch =>{
+    return{
+        authSignIn : (user)=>dispatch(actions.authSignIn(user))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(SignIn);

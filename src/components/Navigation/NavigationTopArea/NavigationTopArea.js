@@ -14,7 +14,7 @@ const navigationTopArea=(props)=>{
                     <p> <FontAwesomeIcon style={{'color':'blue'}} icon={faPhone}/> Call Us: (123) 400 0000</p>
                 </div>
                 <div className={Classes.ContainerRight}>
-                    <DropDown/>
+                    {props.isAuth? <DropDown/> : null}
                 </div>
             </div>
         </div>        

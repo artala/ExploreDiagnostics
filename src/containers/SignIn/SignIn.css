@@ -3,6 +3,7 @@
     padding: 0;
     height: 400px;
     background: rgba(0, 0, 0, 0) url("../../assets/images/appointment-bg2.jpg") no-repeat scroll center center / cover ;
+    height: inherit
 }
 
 .container{

@@ -15,24 +15,24 @@ const navigationItems = (props) => (
         <NavigationItem link="/customerOrders">BLOG</NavigationItem>
         <NavigationItem link="/vendorOrders" exact>CONTACT</NavigationItem>
         {/* Dropdown in User Page */}
-        {true?
+        {!props.isAuthenticated?
         <li><div className={classes.mobileDropDown}onClick={props.dropDownHandler}> Welcome sailendra <FontAwesomeIcon  icon={faCaretDown}/></div> 
                 <ul className={props.showDropDown?classes.dropDownItems:classes.dropDownItemsClosed}>
                        {props.showDropDown?<div><li><a href="/vendor">My Dashboard</a></li>
                         <li><a href="booking.html">Booking</a></li>
-                        <li><a href="report-download.html">Report Download</a></li>
+                        <li><NavLink to="/customerOrders" exact>Report Download</NavLink></li>
                         <li><a href="billto-view.html">Bill to View</a></li>
                         <li><a href="/logout">SignOut</a></li></div>
                         :null}
                 </ul>
         </li>
         :null}
-        <NavLink className={classes.NavLink} to="/SignUp" exact>
-                SIGN Up
-        </NavLink>
-        <NavLink  className={classes.NavLink} to="/SignIn" exact>
-                SIGN In
-        </NavLink>
+        {!props.isAuthenticated ?<NavLink className={classes.NavLink} to="/SignUp" exact>
+                        SIGN Up </NavLink>:null}
+        {!props.isAuthenticated ?<NavLink  className={classes.NavLink} to="/SignIn" exact>
+                        SIGN In</NavLink>
+        : null }
+        
         <NavLink className={classes.NavLink} to="/make-an-appointment" exact>
                 MAKE AN APPOINTMENT
         </NavLink>

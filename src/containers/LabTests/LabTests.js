@@ -1,15 +1,16 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
+
 import PageLayout from '../../hoc/PageLayout/PageLayout';
 import Input from '../../components/UI/Input/Input';
 import Classes from './LabTests.css';
 import Button from '../../components/UI/Button/Button';
 import {updateObject,checkValidity} from '../../shared/utility';
-import LabTest from '../../components/Labtest/Labtest'
-import axios from '../../axios-orders'
+import LabTest from '../../components/Labtest/Labtest';
+import * as testActions from '../../store/actions/index';
 
 class LabTests extends Component{
     state={
-        labTests:null,
         controls:{
             search: {
                 elementType: 'input',
@@ -18,7 +19,7 @@ class LabTests extends Component{
                 },
                 value: '',
                 validation: {
-                    required: true,
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -49,42 +50,33 @@ class LabTests extends Component{
         })
         this.setState({controls:updatedControls})
     }
-    addTestHandler=(event)=>{
-        event.preventDefault();
-        const newTest={
-            test:this.state.controls.search.value,
-            price:this.state.controls.price.value
-        }
-        axios.post('/labtests.json',newTest)
-        .then(response=> this.getTestsHandler())
-        .catch(error=>console.log(error))
-        this.setState({controls:
-                            {...this.state.controls,
-                                search:{value:''},
-                                price:{value:''}
-                            }
-                        })        
+    addTestHandlerLocal=(event)=>{
+        event.preventDefault()
+        let test=this.state.controls.search.value
+        let price=this.state.controls.price.value
+        if(test!=='' & price !==''){
+            this.setState({controls:{
+                ...this.state.controls,
+                search:{...this.state.controls.search,value:''},
+                price:{...this.state.controls.price,value:''}
+            }})
+            this.props.addTestHandler(test,price)
+           }
+    }
+    
+    componentDidMount(){
+        this.props.getTestsHandler()
     }
 
-    getTestsHandler=()=>{
-        axios.get('https://explore-diagnostics.firebaseio.com/labtests.json')
-        .then(response=>{
-            this.setState({labTests:response.data})
-        })
-    }
-    componentDidMount(){
-        this.getTestsHandler();
-    }
     render(){
         let labtestsdiv=<div>No Tests Available</div>
-        console.log(this.state.labTests)
-        if (this.state.labTests != null){
-            let labTestsKeysList=Object.keys(this.state.labTests)
+        if (this.props.labTests != null){
+            let labTestsKeysList=Object.keys(this.props.labTests)
             labtestsdiv=labTestsKeysList.map(labTestKey=>(
                 <LabTest
                         key={labTestKey}
-                        test={this.state.labTests[labTestKey].test}
-                        price={this.state.labTests[labTestKey].price}/>
+                        test={this.props.labTests[labTestKey].test}
+                        price={this.props.labTests[labTestKey].price}/>
             ))
         }
         return(
@@ -95,7 +87,7 @@ class LabTests extends Component{
             Subtitle2="Diagnostics Labtest Page"/>
             <div className={Classes.container}>
                 <h2>LIST OF LABTEST</h2>    
-                    <form onSubmit={this.addTestHandler}>
+                    <form onSubmit={this.addTestHandlerLocal}>
                         <div className={Classes.labtestSearch}>
                         <div className={Classes.labtestInput}>
                             <Input 
@@ -130,5 +122,17 @@ class LabTests extends Component{
     }
 }
 
+const mapStateToProps = state =>{
+    return{
+        labTests:state.testsStore.tests
+    }
+}
 
-export default LabTests;
+const mapDispatchToProps = dispatch =>{
+    return{
+        getTestsHandler : ()=>dispatch(testActions.fetchTestsAsync()),
+        addTestHandler : (test,price)=>dispatch(testActions.addTests(test,price))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LabTests);

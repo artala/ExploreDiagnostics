@@ -6,7 +6,7 @@ import Layout from './hoc/Layout/Layout';
 import * as actions from './store/actions/index';
 
 import SignUpDashboard from './containers/SignUp/SignUp';
-import SignUp from './containers/SignUp/SignUp';
+import SignUp from './components/SignUp/SignUpForm/SignUpForm';
 import SignIn from './containers/SignIn/SignIn';
 import Labtests from './containers/LabTests/LabTests';
 import CustomerOrders from './components/CustomerOrders/CustomerOrders';
@@ -21,9 +21,9 @@ import HomePage from './containers/HomePage/HomePage'
 // })
 
 class App extends Component {
-  componentDidMount(){
-    this.props.onTryAutoSignup();
-  }
+  // componentDidMount(){
+  //   this.props.onTryAutoSignup();
+  // }
   
   render () {
     let routes = (

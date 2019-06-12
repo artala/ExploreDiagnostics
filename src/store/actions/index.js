@@ -1,17 +1,15 @@
 export {
-    addIngredient,
-    removeIngredient,
-    initIngredients
-} from './burgerBuilder';
-export {
-    purchaseBurger,
-    purchaseInit,
-    fetchOrders
-} from './order';
-
-export {
-    auth,
+    authIsVendor,
+    authSignUp,
+    authSignIn,
     logout,
     setAuthRedirectPath,
-    authCheckState
+    authCheckState,
+    authSignUpSuccess,
+    authSignUpFail
 } from './auth';
+
+export {
+    fetchTestsAsync,
+    addTests
+} from './tests'
